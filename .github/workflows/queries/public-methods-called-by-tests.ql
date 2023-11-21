@@ -8,7 +8,6 @@ import javascript
 
 /**
  * Holds if a function is a test.
- * And Public
  */
 predicate isTest(Function test) {
   exists(CallExpr describe, CallExpr it |
@@ -32,8 +31,10 @@ predicate calls(Function caller, Function callee) {
 /**
 * Holds if the given function is a public method of a class.
 */
-predicate isPublicMethod(Function f) {
-exists(MethodDefinition md | md.isPublic() and md.getBody() = f)
+predicate isPublicMethod(Function callee) {
+  exists(MethodDefinition md | 
+  md.isPublic() and 
+  md.getBody() = callee)
 }
 
 from Function test, Function callee
