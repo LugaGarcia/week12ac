@@ -16,7 +16,6 @@ predicate isTest(Function test) {
     it.getCalleeName() = "it" and
     it.getParent*() = describe and
     test = it.getArgument(1)
-    # will there be a identifier here for it to be public?
   )
 }
 
