@@ -8,6 +8,7 @@ import javascript
 
 /**
  * Holds if a function is a test.
+ * And Public
  */
 predicate isTest(Function test) {
   exists(CallExpr describe, CallExpr it |
@@ -15,6 +16,7 @@ predicate isTest(Function test) {
     it.getCalleeName() = "it" and
     it.getParent*() = describe and
     test = it.getArgument(1)
+    # will there be a identifier here for it to be public?
   )
 }
 
@@ -31,4 +33,4 @@ predicate calls(Function caller, Function callee) {
 from Function test, Function callee
 where isTest(test) and
       calls(test, callee)
-select callee, "is directly called by a test"
+select callee, "is called by a test and is public"
