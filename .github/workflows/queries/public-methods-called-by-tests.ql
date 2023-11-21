@@ -39,6 +39,6 @@ predicate isPublicMethod(Function callee) {
 
 from Function test, Function callee
 where isTest(test) and
-      calls(test, callee)
+      calls(test, callee) and
       isPublicMethod(callee)
 select callee, "is called by a test and is public"
