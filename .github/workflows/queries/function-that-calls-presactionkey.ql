@@ -14,8 +14,7 @@ predicate isTest(Function test) {
     describe.getCalleeName() = "describe" and
     it.getCalleeName() = "it" and
     it.getParent*() = describe and
-    test = it.getArgument(1) and 
-    it.getName() = "pressActionKey"
+    test = it.getArgument(1)
   )
 }
 
@@ -31,5 +30,7 @@ predicate calls(Function caller, Function callee) {
 
 from Function test, Function callee
 where isTest(test) and
-      calls(test, callee)
-select callee, "is directly called by a test"
+      calls(test, callee) and
+      callee.getName() = "pressActionKey"
+
+select callee, "is has pressActionKey"
