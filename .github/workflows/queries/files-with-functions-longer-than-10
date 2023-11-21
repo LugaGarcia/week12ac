@@ -1,0 +1,22 @@
+/**
+ * @description Find all files with extension "ts" or "tsx" that has comments
+ * @kind problem
+ * @id javascript/files-with-functions-longer-than-10
+ * @problem.severity recommendation
+ */
+import javascript
+
+predicate isJavaScriptOrTypeScriptFile(File file) {
+  file.getExtension() = "ts" or file.getExtension() = "tsx"
+}
+
+predicate hasFunctionWith10Lines(File file) {
+  exists(Function function | 
+  function.getFile() = file
+  function.getNumLines() > 10)
+}
+
+from File file
+where isJavaScriptOrTypeScriptFile(file) and 
+      hasFunctionWith10Lines(file)
+select file, "Found function greater than 10 lines: " + function
