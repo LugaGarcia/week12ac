@@ -29,7 +29,15 @@ predicate calls(Function caller, Function callee) {
   )
 }
 
+/**
+* Holds if the given function is a public method of a class.
+*/
+predicate isPublicMethod(Function f) {
+exists(MethodDefinition md | md.isPublic() and md.getBody() = f)
+}
+
 from Function test, Function callee
 where isTest(test) and
       calls(test, callee)
+      isPublicMethod(callee)
 select callee, "is called by a test and is public"
