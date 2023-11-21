@@ -29,8 +29,7 @@ predicate calls(Function caller, Function callee) {
 }
 
 from Function test, Function callee
-where isTest(test) and
-      calls(test, callee) and
+where calls(test, callee) and
       callee.getNumLines() > 10
 
 select callee, "function has more than 10 lines"
