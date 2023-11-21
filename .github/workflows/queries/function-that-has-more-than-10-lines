@@ -33,4 +33,4 @@ where isTest(test) and
       calls(test, callee) and
       callee.getNumLines() > 10
 
-select callee, "is has pressActionKey"
+select callee, "function has more than 10 lines"
